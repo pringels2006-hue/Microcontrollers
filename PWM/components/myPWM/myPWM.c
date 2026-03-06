@@ -42,6 +42,4 @@ void myPWM_SetDuty(int value)
 void myPWM_Frequency(int freq)
 {
     ledc_timer.freq_hz = freq;
-    ledc_set_duty(ledc_channel.speed_mode, ledc_channel.channel, 1023);
-    ledc_update_duty(ledc_channel.speed_mode, ledc_channel.channel);
 }
