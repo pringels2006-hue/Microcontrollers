@@ -13,9 +13,8 @@ static ledc_channel_config_t ledc_channel =
         .hpoint = 0,
         .timer_sel = LEDC_TIMER_0,
 };
-void myPWM_Initialize(int gpioPin)
-{
-    ledc_timer_config_t ledc_timer = 
+
+ledc_timer_config_t ledc_timer = 
     {
         .duty_resolution = LEDC_TIMER_10_BIT, // resolution of PWM duty
         .freq_hz = 1000,                      // frequency of PWM signal
@@ -23,6 +22,9 @@ void myPWM_Initialize(int gpioPin)
         .timer_num = LEDC_TIMER_0,            // timer index
         .clk_cfg = LEDC_AUTO_CLK,              // Auto select the source clock.
     };
+void myPWM_Initialize(int gpioPin)
+{
+    
 
     ledc_channel.gpio_num = gpioPin;
     
@@ -34,5 +36,12 @@ void myPWM_Initialize(int gpioPin)
 void myPWM_SetDuty(int value)
 {
     ledc_set_duty(ledc_channel.speed_mode, ledc_channel.channel, value);
+    ledc_update_duty(ledc_channel.speed_mode, ledc_channel.channel);
+}
+
+void myPWM_Frequency(int freq)
+{
+    ledc_timer.freq_hz = freq;
+    ledc_set_duty(ledc_channel.speed_mode, ledc_channel.channel, 1023);
     ledc_update_duty(ledc_channel.speed_mode, ledc_channel.channel);
 }
