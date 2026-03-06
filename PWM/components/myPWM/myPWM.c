@@ -14,7 +14,7 @@ static ledc_channel_config_t ledc_channel =
         .timer_sel = LEDC_TIMER_0,
 };
 
-ledc_timer_config_t ledc_timer = 
+static ledc_timer_config_t ledc_timer = 
     {
         .duty_resolution = LEDC_TIMER_10_BIT, // resolution of PWM duty
         .freq_hz = 1000,                      // frequency of PWM signal
@@ -24,8 +24,6 @@ ledc_timer_config_t ledc_timer =
     };
 void myPWM_Initialize(int gpioPin)
 {
-    
-
     ledc_channel.gpio_num = gpioPin;
     
 
