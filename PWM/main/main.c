@@ -26,8 +26,8 @@ void app_main(void)
         //Potmeter inlezen
         potWaarde = esp_adc_cal_raw_to_voltage(adc1_get_raw((adc1_channel_t)CHANNEL), adc_chars);
         printf("Potentiometer waarde: %d mV\n", potWaarde);
-
-        myPWM_SetDuty(potWaarde / 4); // Schaal de potentiometerwaarde naar een bereik van 0-255
+        myPWM_Frequency(potWaarde / 4); // Stel de PWM-frequentie in op basis van de potentiometerwaarde
+        myPWM_SetDuty(125); // Schaal de potentiometerwaarde naar een bereik van 0-255
     }
 
 }
